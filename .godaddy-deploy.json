@@ -1,0 +1,6 @@
+{
+  "name": "after-care",
+  "framework": "nextjs",
+  "buildCommand": "npm run build",
+  "startCommand": "npm run start"
+}
