@@ -4,11 +4,12 @@ import Link from "next/link";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { MoodSelector } from "@/components/portal/shared/MoodSelector";
 import { ReleaseField } from "@/components/portal/shared/ReleaseField";
+import { RoomColorAmbience } from "@/components/portal/shared/RoomColorAmbience";
 import { RoomProgressDots } from "@/components/portal/shared/RoomProgressDots";
 import { SonicHealingPlayer } from "@/components/portal/shared/SonicHealingPlayer";
 import { getRoomNav, getRoomPath } from "@/lib/room-navigation";
 import { getRoomTracks } from "@/lib/room-tracks";
-import type { RoomSlug } from "@/lib/rooms";
+import { getRoom, type RoomSlug } from "@/lib/rooms";
 
 type RoomExperienceLayoutProps = {
   slug: RoomSlug;
@@ -16,7 +17,6 @@ type RoomExperienceLayoutProps = {
   bodyCopy: string;
   quote: string;
   footerLine: string;
-  roomLabelColor?: string;
   showTitleDivider?: boolean;
   quoteVariant?: "accent-border" | "subtle-box" | "left-border" | "plain";
   releaseHint?: string;
@@ -31,7 +31,6 @@ export function RoomExperienceLayout({
   bodyCopy,
   quote,
   footerLine,
-  roomLabelColor = "text-neutral-500",
   showTitleDivider = false,
   quoteVariant = "accent-border",
   releaseHint,
@@ -42,6 +41,7 @@ export function RoomExperienceLayout({
   const nav = getRoomNav(slug);
   const tracks = getRoomTracks(slug);
   const { current, prev, next } = nav;
+  const roomColor = getRoom(slug)?.color ?? "#c9a962";
 
   const topLeftHref = prev ? getRoomPath(prev.slug) : "/portal/architecture";
   const topLeftLabel = prev ? `Room ${Number(prev.number)}` : "Portal";
@@ -49,8 +49,8 @@ export function RoomExperienceLayout({
   const nextRoomNumber = next ? Number(next.number) : null;
 
   return (
-    <div className="flex min-h-screen flex-col bg-app text-app">
-      <header className="border-b border-app/80 px-6 py-5 sm:px-10 lg:px-14">
+    <RoomColorAmbience color={roomColor} className="text-app">
+      <header className="border-b border-app/80 bg-transparent px-6 py-5 sm:px-10 lg:px-14">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-6">
           <Link
             href={topLeftHref}
@@ -84,7 +84,10 @@ export function RoomExperienceLayout({
       <main className="mx-auto grid w-full max-w-7xl flex-1 gap-10 px-6 py-10 sm:px-10 lg:grid-cols-2 lg:gap-14 lg:px-14 lg:py-14">
         <section className="flex flex-col justify-between">
           <div>
-            <p className={`text-[10px] uppercase tracking-[0.22em] ${roomLabelColor}`}>
+            <p
+              className="text-[10px] uppercase tracking-[0.22em]"
+              style={{ color: roomColor }}
+            >
               Room {current.number}
             </p>
             <h1 className="mt-4 font-serif-display text-4xl leading-tight text-headline sm:text-5xl lg:text-[3.25rem]">
@@ -100,7 +103,10 @@ export function RoomExperienceLayout({
             </p>
 
             {quoteVariant === "accent-border" ? (
-              <blockquote className="mt-10 border-t border-[#9B4545]/40 pt-8">
+              <blockquote
+                className="mt-10 border-t pt-8"
+                style={{ borderColor: `${roomColor}66` }}
+              >
                 <p className="font-serif-display text-lg italic leading-relaxed text-neutral-300 sm:text-xl">
                   &ldquo;{quote}&rdquo;
                 </p>
@@ -143,7 +149,7 @@ export function RoomExperienceLayout({
         </section>
       </main>
 
-      <footer className="border-t border-app/80 px-6 py-5 sm:px-10 lg:px-14">
+      <footer className="border-t border-app/80 bg-transparent px-6 py-5 sm:px-10 lg:px-14">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-6">
           <Link
             href="/portal/architecture"
@@ -167,6 +173,6 @@ export function RoomExperienceLayout({
           )}
         </div>
       </footer>
-    </div>
+    </RoomColorAmbience>
   );
 }

@@ -366,7 +366,41 @@ svg {
     box-shadow: 0 8px 24px var(--shadow);
   }
 
+  .room-ambience {
+    --room-accent: #c9a962;
+    overflow: hidden;
+    background-color: var(--bg);
+  }
+
+  .room-ambience-base {
+    display: none;
+  }
+
+  .room-ambience-spotlight {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+
+  .room-ambience-spotlight.is-on {
+    opacity: 0.75;
+  }
+
+  .room-ambience-dot {
+    position: absolute;
+    z-index: 5;
+    height: 6px;
+    width: 6px;
+    border-radius: 9999px;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+  }
+
   .room-card {
+    --room-accent: #c9a962;
     position: relative;
     overflow: hidden;
     border: 1px solid color-mix(in srgb, var(--border) 90%, transparent);
@@ -375,6 +409,44 @@ svg {
       border-color 0.45s cubic-bezier(0.22, 1, 0.36, 1),
       background-color 0.45s cubic-bezier(0.22, 1, 0.36, 1),
       box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .room-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    box-shadow:
+      inset 0 1px 0 0 color-mix(in srgb, var(--room-accent) 38%, transparent),
+      inset 0 -1px 0 0 color-mix(in srgb, var(--room-accent) 38%, transparent),
+      inset 1px 0 0 0 color-mix(in srgb, var(--room-accent) 38%, transparent),
+      inset -1px 0 0 0 color-mix(in srgb, var(--room-accent) 38%, transparent);
+  }
+
+  .room-card-cursor-dot {
+    position: absolute;
+    z-index: 20;
+    height: 6px;
+    width: 6px;
+    border-radius: 9999px;
+    pointer-events: none;
+    transition:
+      left 0.08s linear,
+      top 0.08s linear,
+      opacity 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+
+  .room-card-cursor-dot:not(.is-on) {
+    right: 1.25rem;
+    top: 1.25rem;
+  }
+
+  .room-card-cursor-dot.is-on {
+    transform: translate(-50%, -50%);
   }
 
   .room-card-spotlight {
@@ -405,27 +477,37 @@ svg {
   }
 
   @media (hover: hover) {
-    .room-card:hover {
-      border-color: color-mix(in srgb, #c9a962 35%, var(--border));
+    .room-card:hover,
+    .room-card.is-active {
+      border-color: color-mix(in srgb, var(--room-accent) 32%, var(--border));
       background-color: var(--surface-elevated);
-      box-shadow: 0 16px 48px var(--shadow);
+      box-shadow:
+        0 -10px 28px -10px color-mix(in srgb, var(--room-accent) 22%, transparent),
+        0 10px 28px -10px color-mix(in srgb, var(--room-accent) 22%, transparent),
+        -10px 0 28px -10px color-mix(in srgb, var(--room-accent) 22%, transparent),
+        10px 0 28px -10px color-mix(in srgb, var(--room-accent) 22%, transparent),
+        0 16px 48px var(--shadow);
     }
 
-    .room-card:hover .room-card-text {
+    .room-card:hover::before,
+    .room-card.is-active::before {
+      opacity: 1;
+    }
+
+    .room-card:hover .room-card-text,
+    .room-card.is-active .room-card-text {
       transform: translateY(-10px);
     }
 
-    .room-card:hover .room-card-footer {
+    .room-card:hover .room-card-footer,
+    .room-card.is-active .room-card-footer {
       transform: translateY(-4px);
     }
 
-    .room-card:hover .room-card-arrow {
+    .room-card:hover .room-card-arrow,
+    .room-card.is-active .room-card-arrow {
       transform: translate(6px, -2px);
-      color: var(--fg);
-    }
-
-    .room-card:hover .room-card-dot {
-      background-color: color-mix(in srgb, #c9a962 80%, transparent);
+      color: var(--room-accent);
     }
   }
 }

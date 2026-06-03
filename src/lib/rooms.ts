@@ -5,6 +5,7 @@ export const rooms = [
     name: "The Collapse",
     line1: "Where the structure falls.",
     line2: "The beginning of the end.",
+    color: "#b8734a",
   },
   {
     slug: "withdrawal",
@@ -12,6 +13,7 @@ export const rooms = [
     name: "The Withdrawal",
     line1: "The quiet after the storm.",
     line2: "The body knows when to go still.",
+    color: "#9a9a9a",
   },
   {
     slug: "ghost",
@@ -19,6 +21,7 @@ export const rooms = [
     name: "The Ghost",
     line1: "Conversations with shadows.",
     line2: "Love with nowhere to land.",
+    color: "#f2b8c6",
   },
   {
     slug: "mirror",
@@ -26,6 +29,7 @@ export const rooms = [
     name: "The Mirror",
     line1: "Facing the reflection.",
     line2: "Who remains when it's gone.",
+    color: "#b8bcc4",
   },
   {
     slug: "frequency",
@@ -33,6 +37,7 @@ export const rooms = [
     name: "The Frequency",
     line1: "Tuning into a new signal.",
     line2: "Something is shifting beneath the static.",
+    color: "#c9a84c",
   },
   {
     slug: "exit",
@@ -40,6 +45,7 @@ export const rooms = [
     name: "The Exit",
     line1: "The doorway out.",
     line2: "Not an erasure, a departure.",
+    color: "#b8a8d4",
   },
   {
     slug: "arrival",
@@ -47,6 +53,7 @@ export const rooms = [
     name: "The Arrival",
     line1: "You survived.",
     line2: "Now you breathe.",
+    color: "#c9a962",
     isFinal: true,
   },
 ] as const;
