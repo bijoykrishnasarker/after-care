@@ -362,8 +362,8 @@ svg {
   }
 
   .payment-method-btn:hover .payment-method-logo {
-    transform: scale(1.05);
-    box-shadow: 0 8px 24px var(--shadow);
+    transform: scale(1.04);
+    box-shadow: 0 4px 16px var(--shadow);
   }
 
   .room-ambience {
