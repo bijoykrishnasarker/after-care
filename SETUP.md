@@ -53,7 +53,7 @@ Install Stripe CLI: https://stripe.com/docs/stripe-cli
 
 ```powershell
 stripe login
-stripe listen --forward-to localhost:3000/api/stripe/webhook
+stripe listen --forward-to localhost:3000/api/webhook/stripe
 ```
 
 Copy the `whsec_...` secret into `.env.local` as `STRIPE_WEBHOOK_SECRET`, then restart `npm run dev`.
@@ -119,6 +119,75 @@ public/audio/arrival/01.mp3
 
 Then register them in `src/lib/room-tracks.ts`.
 
-## 8. Decline test
+## 9. Stripe live (production)
+
+Two API keys alone are **not enough**. You also need a **webhook signing secret**.
+
+### Required env vars
+
+| Variable | Where to get it |
+|----------|-----------------|
+| `STRIPE_SECRET_KEY` | Stripe → Developers → API keys → Secret key (`sk_live_...`) |
+| `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Same page → Publishable key (`pk_live_...`) |
+| `STRIPE_WEBHOOK_SECRET` | Stripe → Developers → Webhooks → endpoint → Signing secret (`whsec_...`) |
+
+### Create the webhook (Stripe Dashboard)
+
+1. Go to https://dashboard.stripe.com/webhooks
+2. **Add endpoint**
+3. URL: `https://YOUR-DOMAIN.vercel.app/api/webhook/stripe`
+4. Events: select **`payment_intent.succeeded`**
+5. Copy the **Signing secret** → `STRIPE_WEBHOOK_SECRET` in Vercel and `.env.local`
+
+Without the webhook, payments can succeed but **portal access email will not be granted**.
+
+### Local webhook testing
+
+```powershell
+stripe listen --forward-to localhost:3000/api/webhook/stripe
+```
+
+Use the `whsec_...` from the CLI output in `.env.local` while testing locally.
+
+### Check configuration
+
+```text
+GET /api/health/stripe
+```
+
+Returns `ok: true` when all three Stripe env vars are set.
+
+### Vercel env vars (production)
+
+Set these in Vercel → Project → Settings → Environment Variables:
+
+```env
+APP_URL=https://YOUR-DOMAIN.vercel.app
+AUTH_SECRET=long-random-secret
+MONGODB_URI=mongodb+srv://...
+MONGODB_DB_NAME=aftercare
+STRIPE_SECRET_KEY=sk_live_...
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_live_...
+STRIPE_WEBHOOK_SECRET=whsec_...
+RESEND_API_KEY=re_...
+EMAIL_FROM=Aftercare <you@yourdomain.com>
+CRON_SECRET=long-random-secret
+PORTAL_DEMO_ACCESS=false
+NEXT_PUBLIC_PORTAL_DEMO=false
+```
+
+Redeploy after saving env vars.
+
+### Stripe account checklist
+
+- [ ] Business details submitted (live payments enabled)
+- [ ] Live API keys created
+- [ ] Webhook endpoint added with `payment_intent.succeeded`
+- [ ] Resend domain verified (for portal emails)
+- [ ] MongoDB Atlas allows `0.0.0.0/0` (Vercel IPs)
+
+Price charged at checkout: **$48.88 USD** (`4888` cents in `src/lib/checkout.ts`).
+
+## 10. Decline test
 
 Use card `4000 0000 0000 0002` to test failed payment.
