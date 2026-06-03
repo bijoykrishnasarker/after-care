@@ -43,7 +43,7 @@ function PaymentMethodButton({
           : "border-app bg-surface hover:border-[#C9A962]/55 hover:bg-surface-elevated",
       ].join(" ")}
     >
-      <span className="payment-method-logo flex h-7 w-full items-center justify-center overflow-hidden rounded-sm bg-white">
+      <span className="payment-method-logo flex h-7 w-full items-center justify-center overflow-hidden rounded-none bg-white">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={logo}
