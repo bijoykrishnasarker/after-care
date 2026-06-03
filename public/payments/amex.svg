@@ -1,4 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 500" role="img" aria-label="American Express">
-  <rect width="780" height="500" rx="40" fill="#006FCF"/>
-  <path fill="#fff" d="m40 220 48-48h38l48 48v-48h44l28 32 28-32h140v16l-42 48 42 48v16H296l-28-32-28 32H40v-48zm48 0 32-32 32 32h-64zm120 0v-48h84l20 24 20-24h84v96l-36-40 36-40v-16h-72l-20 24-20-24h-72zm48 0 28-32v64l-28-32zm140 0h56l-28-32 28-32h-56l-28 32 28 32-28 32zm88-48h120v16l-48 32 48 32v16H536l-48-32 48-32v-16z"/>
-</svg>

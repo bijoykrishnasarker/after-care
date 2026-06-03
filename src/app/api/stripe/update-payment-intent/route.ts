@@ -11,10 +11,12 @@ export async function POST(request: Request) {
     const body = (await request.json()) as {
       paymentIntentId?: string;
       email?: string;
+      paymentMethod?: string;
     };
 
     const paymentIntentId = body.paymentIntentId?.trim();
     const email = body.email?.trim();
+    const paymentMethod = body.paymentMethod?.trim();
 
     if (!paymentIntentId || !email) {
       return NextResponse.json(
@@ -29,6 +31,7 @@ export async function POST(request: Request) {
       metadata: {
         product: CHECKOUT.productName,
         email,
+        ...(paymentMethod ? { paymentMethod } : {}),
       },
     });
 

@@ -2,7 +2,14 @@
 
 import Link from "next/link";
 import { trackPurchaseIntent } from "@/lib/analytics";
-import { getPaymentMethod, type PaymentMethodId } from "@/lib/payment-methods";
+import {
+  getPayButtonLabel,
+  getPaymentMethod,
+  isCardMethod,
+  isRedirectMethod,
+  isWalletMethod,
+  type PaymentMethodId,
+} from "@/lib/payment-methods";
 import { PaymentMethodSelector } from "./PaymentMethodSelector";
 import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
@@ -33,6 +40,10 @@ export function CheckoutFormFallback() {
     [paymentMethod],
   );
 
+  const showCardFields = isCardMethod(paymentMethod);
+  const showWalletPanel = isWalletMethod(paymentMethod);
+  const showRedirectPanel = isRedirectMethod(paymentMethod);
+
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setError(null);
@@ -42,11 +53,17 @@ export function CheckoutFormFallback() {
     const formData = new FormData(event.currentTarget);
     const email = String(formData.get("email") ?? "").trim();
 
+    if (!email) {
+      setError("Enter your email before continuing.");
+      setLoading(false);
+      return;
+    }
+
     try {
       const response = await fetch("/api/checkout/demo-complete", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, paymentMethod }),
       });
 
       const data = (await response.json()) as { error?: string };
@@ -56,7 +73,7 @@ export function CheckoutFormFallback() {
         return;
       }
 
-      router.push("/checkout/success");
+      router.push(`/checkout/success?method=${paymentMethod}`);
       router.refresh();
     } catch {
       setError("Unable to connect. Please try again.");
@@ -90,49 +107,71 @@ export function CheckoutFormFallback() {
         />
       </Field>
 
-      <Field label="Name on card">
-        <input
-          type="text"
-          name="name"
-          required
-          autoComplete="name"
-          placeholder="Full name"
-          className="field-input"
-        />
-      </Field>
+      {showCardFields ? (
+        <>
+          <Field label="Name on card">
+            <input
+              type="text"
+              name="name"
+              required
+              autoComplete="name"
+              placeholder="Full name"
+              className="field-input"
+            />
+          </Field>
 
-      <div>
-        <div className="mb-3 flex items-center gap-2">
-          <CardIcon />
-          <p className="field-label">Card details</p>
+          <div>
+            <div className="mb-3 flex items-center gap-2">
+              <CardIcon />
+              <p className="field-label">Card details</p>
+            </div>
+            <input
+              type="text"
+              name="cardNumber"
+              inputMode="numeric"
+              autoComplete="cc-number"
+              placeholder="Card number"
+              className="field-input mb-3"
+            />
+            <div className="grid grid-cols-2 gap-3">
+              <input
+                type="text"
+                name="expiry"
+                inputMode="numeric"
+                autoComplete="cc-exp"
+                placeholder="MM / YY"
+                className="field-input"
+              />
+              <input
+                type="text"
+                name="cvc"
+                inputMode="numeric"
+                autoComplete="cc-csc"
+                placeholder="CVC"
+                className="field-input"
+              />
+            </div>
+          </div>
+        </>
+      ) : null}
+
+      {showWalletPanel ? (
+        <div className="border border-app bg-surface px-4 py-5 text-center">
+          <p className="text-sm text-app">{selectedMethod.label} ready</p>
+          <p className="mt-2 text-xs leading-relaxed text-neutral-500">
+            Demo mode: click below to simulate {selectedMethod.label} checkout.
+          </p>
         </div>
-        <input
-          type="text"
-          name="cardNumber"
-          inputMode="numeric"
-          autoComplete="cc-number"
-          placeholder="Card number"
-          className="field-input mb-3"
-        />
-        <div className="grid grid-cols-2 gap-3">
-          <input
-            type="text"
-            name="expiry"
-            inputMode="numeric"
-            autoComplete="cc-exp"
-            placeholder="MM / YY"
-            className="field-input"
-          />
-          <input
-            type="text"
-            name="cvc"
-            inputMode="numeric"
-            autoComplete="cc-csc"
-            placeholder="CVC"
-            className="field-input"
-          />
+      ) : null}
+
+      {showRedirectPanel ? (
+        <div className="border border-app bg-surface px-4 py-5 text-center">
+          <p className="text-sm text-app">Redirect to {selectedMethod.label}</p>
+          <p className="mt-2 text-xs leading-relaxed text-neutral-500">
+            Demo mode: you will return here after the simulated redirect.
+          </p>
         </div>
-      </div>
+      ) : null}
 
       {error && (
         <p className="text-sm text-red-400" role="alert">
@@ -142,7 +181,7 @@ export function CheckoutFormFallback() {
 
       <button type="submit" disabled={loading} className="btn-primary">
         <span className="btn-primary-label">
-          {loading ? "Processing..." : `Pay with ${selectedMethod.label}`}
+          {getPayButtonLabel(paymentMethod, loading)}
         </span>
         {!loading && (
           <span className="btn-primary-arrow" aria-hidden>
@@ -152,7 +191,7 @@ export function CheckoutFormFallback() {
       </button>
 
       <p className="text-xs leading-relaxed text-neutral-600">
-        Your bank may open a separate page for OTP or 3D Secure verification.
+        Demo checkout — no real charge. Select any payment method to test the flow.
       </p>
 
       <p className="type-kicker flex items-center justify-center gap-2 text-neutral-600">

@@ -3,7 +3,15 @@
 import { PaymentElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useMemo, useState } from "react";
 import { trackPurchaseIntent } from "@/lib/analytics";
-import { getPaymentMethod, type PaymentMethodId } from "@/lib/payment-methods";
+import {
+  getPayButtonLabel,
+  getPaymentElementOptions,
+  getPaymentMethod,
+  isCardMethod,
+  isRedirectMethod,
+  isWalletMethod,
+  type PaymentMethodId,
+} from "@/lib/payment-methods";
 import { PaymentMethodSelector } from "./PaymentMethodSelector";
 
 type StripePaymentFormProps = {
@@ -28,6 +36,10 @@ export function StripePaymentForm({ clientSecret }: StripePaymentFormProps) {
     [paymentMethod],
   );
 
+  const showCardFields = isCardMethod(paymentMethod);
+  const showWalletNote = isWalletMethod(paymentMethod);
+  const showRedirectNote = isRedirectMethod(paymentMethod);
+
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setErrorMessage(null);
@@ -41,6 +53,11 @@ export function StripePaymentForm({ clientSecret }: StripePaymentFormProps) {
       return;
     }
 
+    if (showCardFields && !name.trim()) {
+      setErrorMessage("Enter the name on your card.");
+      return;
+    }
+
     setIsProcessing(true);
     trackPurchaseIntent();
 
@@ -51,6 +68,7 @@ export function StripePaymentForm({ clientSecret }: StripePaymentFormProps) {
         body: JSON.stringify({
           paymentIntentId: getPaymentIntentId(clientSecret),
           email,
+          paymentMethod,
         }),
       });
     } catch {
@@ -64,7 +82,7 @@ export function StripePaymentForm({ clientSecret }: StripePaymentFormProps) {
         receipt_email: email,
         payment_method_data: {
           billing_details: {
-            name,
+            name: showCardFields ? name : undefined,
             email,
           },
         },
@@ -104,36 +122,44 @@ export function StripePaymentForm({ clientSecret }: StripePaymentFormProps) {
         />
       </Field>
 
-      <Field label="Name on card">
-        <input
-          type="text"
-          name="name"
-          required
-          autoComplete="name"
-          value={name}
-          onChange={(event) => setName(event.target.value)}
-          placeholder="Full name"
-          className="field-input"
-        />
-      </Field>
+      {showCardFields ? (
+        <Field label="Name on card">
+          <input
+            type="text"
+            name="name"
+            required
+            autoComplete="name"
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+            placeholder="Full name"
+            className="field-input"
+          />
+        </Field>
+      ) : null}
 
       <div>
         <div className="mb-3 flex items-center gap-2">
           <CardIcon />
-          <p className="field-label">Card details</p>
+          <p className="field-label">
+            {showCardFields
+              ? "Card details"
+              : showWalletNote
+                ? `${selectedMethod.label} checkout`
+                : "Secure payment"}
+          </p>
         </div>
         <div className="rounded-none border border-app bg-surface px-3 py-4">
           <PaymentElement
             key={paymentMethod}
-            options={{
-              layout: "tabs",
-              wallets: {
-                applePay: "never",
-                googlePay: "never",
-              },
-            }}
+            options={getPaymentElementOptions(paymentMethod)}
           />
         </div>
+        {showRedirectNote ? (
+          <p className="mt-3 text-xs leading-relaxed text-neutral-600">
+            After you click continue, {selectedMethod.label} opens in a secure
+            window to finish payment.
+          </p>
+        ) : null}
       </div>
 
       {errorMessage && (
@@ -156,7 +182,7 @@ export function StripePaymentForm({ clientSecret }: StripePaymentFormProps) {
         className="btn-primary"
       >
         <span className="btn-primary-label">
-          {isProcessing ? "Processing..." : `Pay with ${selectedMethod.label}`}
+          {getPayButtonLabel(paymentMethod, isProcessing)}
         </span>
         {!isProcessing && (
           <span className="btn-primary-arrow" aria-hidden>
@@ -166,7 +192,7 @@ export function StripePaymentForm({ clientSecret }: StripePaymentFormProps) {
       </button>
 
       <p className="text-xs leading-relaxed text-neutral-600">
-        Your bank may open a separate page for OTP or 3D Secure verification.
+        Your bank or payment provider may open a separate page for verification.
       </p>
 
       <p className="type-kicker flex items-center justify-center gap-2 text-neutral-600">

@@ -28,8 +28,8 @@ export function OrderSummary() {
 
       <ul className="mt-8 space-y-3.5">
         {features.map((item) => (
-          <li key={item} className="flex items-start gap-3 text-sm text-neutral-300">
-            <span className="mt-0.5 text-neutral-600" aria-hidden>
+          <li key={item} className="flex items-start gap-3 text-sm font-medium text-app">
+            <span className="mt-0.5 text-[#9B4545]" aria-hidden>
               ✓
             </span>
             {item}

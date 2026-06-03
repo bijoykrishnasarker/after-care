@@ -13,8 +13,12 @@ export function getStripeServer() {
 }
 
 export function isStripeConfigured() {
+  const secretKey = process.env.STRIPE_SECRET_KEY;
+  const publishableKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY;
+
   return Boolean(
-    process.env.STRIPE_SECRET_KEY &&
-      process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
+    secretKey?.startsWith("sk_") &&
+      !secretKey.includes("PASTE") &&
+      publishableKey?.startsWith("pk_"),
   );
 }
