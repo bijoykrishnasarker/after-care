@@ -16,17 +16,17 @@ export function IntroduceAfterCare() {
               <Reveal>
                 <h2 className="text-[clamp(2rem,5vw,3.25rem)] leading-tight tracking-tight">
                   <span className="block font-medium text-app">This is what</span>
-                  <span className="mt-1 block font-normal italic text-neutral-400">
+                  <span className="mt-1 block font-normal italic text-prose-muted">
                     AfterCare is for.
                   </span>
                 </h2>
               </Reveal>
 
               <Reveal delay={120} className="mt-10 space-y-2 sm:mt-12">
-                <p className="text-sm text-neutral-500 sm:text-base">
+                <p className="text-sm text-prose-soft sm:text-base">
                   Not to &apos;fix&apos; you.
                 </p>
-                <p className="text-sm leading-relaxed text-neutral-500 sm:text-base">
+                <p className="text-sm leading-relaxed text-prose-soft sm:text-base">
                   But to{" "}
                   <span className="text-app">
                     guide you through what you&apos;ve been avoiding.
@@ -36,7 +36,7 @@ export function IntroduceAfterCare() {
             </div>
             <div className="flex flex-col">
               <Reveal delay={180}>
-                <p className="text-sm leading-relaxed text-neutral-500 sm:text-[15px]">
+                <p className="text-sm leading-relaxed text-prose-soft sm:text-[15px]">
                   <span className="font-medium text-app">
                     AfterCare: When It&apos;s Over
                   </span>{" "}
@@ -46,26 +46,27 @@ export function IntroduceAfterCare() {
               </Reveal>
 
               <Reveal delay={280} className="mt-8 border-l border-neutral-700 pl-5 sm:mt-10 sm:pl-6">
-                <p className="text-sm italic text-neutral-500 sm:text-base">
+                <p className="text-sm italic text-prose-soft sm:text-base">
                   Step by step.
                 </p>
-                <p className="mt-1 text-sm italic text-neutral-500 sm:text-base">
+                <p className="mt-1 text-sm italic text-prose-soft sm:text-base">
                   Room by room.
                 </p>
               </Reveal>
 
               <Reveal delay={380} className="mt-8 sm:mt-10">
-                <p className="text-sm text-neutral-500 sm:text-base">
+                <p className="text-sm text-prose-soft sm:text-base">
                   So you don&apos;t stay stuck in something that already ended.
                 </p>
               </Reveal>
 
               <Reveal delay={480} className="mt-12 sm:mt-16">
                 <Link
-                  href="#the-rooms"
+                  href="/#the-rooms"
+                  scroll
                   className="group inline-flex flex-col items-start gap-2"
                 >
-                  <span className="flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.18em] text-app transition-colors duration-300 group-hover:text-neutral-200 sm:text-xs">
+                  <span className="flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.18em] text-app transition-colors duration-300 group-hover:text-prose sm:text-xs">
                     Start processing this
                     <span
                       className="inline-block transition-transform duration-300 group-hover:translate-x-1"
@@ -74,7 +75,7 @@ export function IntroduceAfterCare() {
                       →
                     </span>
                   </span>
-                  <span className="h-px w-full bg-white transition-all duration-300 group-hover:w-[105%] group-hover:bg-neutral-300" />
+                  <span className="h-px w-full bg-app transition-all duration-300 group-hover:w-[105%] group-hover:bg-[var(--prose-muted)]" />
                 </Link>
               </Reveal>
             </div>

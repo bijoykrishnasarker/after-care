@@ -11,23 +11,23 @@ export function Footer() {
                 <span className="text-sm font-bold uppercase tracking-[0.12em] text-app sm:text-base">
                   Aftercare
                 </span>
-                <span className="text-[10px] font-light uppercase tracking-[0.18em] text-neutral-500 sm:text-xs">
+                <span className="text-[10px] font-light uppercase tracking-[0.18em] text-prose-soft sm:text-xs">
                   Global
                 </span>
               </div>
-              <p className="mt-4 max-w-xs text-sm italic leading-relaxed text-neutral-500">
+              <p className="mt-4 max-w-xs text-sm italic leading-relaxed text-prose-soft">
                 Care for after the feelings change.
               </p>
             </div>
             <div className="min-w-0">
-              <p className="text-[10px] uppercase tracking-[0.22em] text-neutral-500 sm:text-[11px]">
+              <p className="text-[10px] uppercase tracking-[0.22em] text-prose-soft sm:text-[11px]">
                 Products
               </p>
               <ul className="mt-4">
                 <li>
                   <Link
                     href="/lead-magnet"
-                    className="text-xs leading-snug text-neutral-300 transition-colors duration-300 hover:text-app sm:text-sm"
+                    className="text-xs leading-snug text-prose transition-colors duration-300 hover:text-app sm:text-sm"
                   >
                     Free guide
                   </Link>
@@ -35,7 +35,7 @@ export function Footer() {
                 <li>
                   <Link
                     href="/"
-                    className="text-xs leading-snug text-neutral-300 transition-colors duration-300 hover:text-app sm:text-sm"
+                    className="text-xs leading-snug text-prose transition-colors duration-300 hover:text-app sm:text-sm"
                   >
                     AfterCare: When It&apos;s Over
                   </Link>
@@ -43,14 +43,14 @@ export function Footer() {
               </ul>
             </div>
             <div className="min-w-0">
-              <p className="text-[10px] uppercase tracking-[0.22em] text-neutral-500 sm:text-[11px]">
+              <p className="text-[10px] uppercase tracking-[0.22em] text-prose-soft sm:text-[11px]">
                 Access
               </p>
               <ul className="mt-4 flex flex-row flex-wrap gap-x-3 gap-y-2 lg:flex-col lg:gap-x-0 lg:gap-y-3">
                 <li>
                   <Link
                     href="/portal"
-                    className="text-xs text-neutral-300 transition-colors duration-300 hover:text-app sm:text-sm"
+                    className="text-xs text-prose transition-colors duration-300 hover:text-app sm:text-sm"
                   >
                     Member Portal
                   </Link>
@@ -58,7 +58,7 @@ export function Footer() {
                 <li>
                   <Link
                     href="/checkout"
-                    className="text-xs text-neutral-300 transition-colors duration-300 hover:text-app sm:text-sm"
+                    className="text-xs text-prose transition-colors duration-300 hover:text-app sm:text-sm"
                   >
                     Purchase Access
                   </Link>
@@ -73,13 +73,13 @@ export function Footer() {
             <div className="flex shrink-0 items-center gap-5 sm:gap-8">
               <Link
                 href="/privacy"
-                className="text-[9px] uppercase tracking-[0.12em] text-neutral-600 transition-colors duration-300 hover:text-neutral-400 sm:text-[10px] sm:tracking-[0.14em] lg:text-[11px]"
+                className="text-[9px] uppercase tracking-[0.12em] text-neutral-600 transition-colors duration-300 hover:text-prose-muted sm:text-[10px] sm:tracking-[0.14em] lg:text-[11px]"
               >
                 Privacy
               </Link>
               <Link
                 href="/terms"
-                className="text-[9px] uppercase tracking-[0.12em] text-neutral-600 transition-colors duration-300 hover:text-neutral-400 sm:text-[10px] sm:tracking-[0.14em] lg:text-[11px]"
+                className="text-[9px] uppercase tracking-[0.12em] text-neutral-600 transition-colors duration-300 hover:text-prose-muted sm:text-[10px] sm:tracking-[0.14em] lg:text-[11px]"
               >
                 Terms
               </Link>

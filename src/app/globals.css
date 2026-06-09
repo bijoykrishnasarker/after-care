@@ -20,6 +20,9 @@
   --accent: #c9a962;
   --input-bg: #0a0a0a;
   --shadow: rgba(0, 0, 0, 0.45);
+  --prose: #e5e5e5;
+  --prose-muted: #a3a3a3;
+  --prose-soft: #737373;
 }
 
 .light {
@@ -38,6 +41,9 @@
   --accent: #9a7b3c;
   --input-bg: #ffffff;
   --shadow: rgba(0, 0, 0, 0.08);
+  --prose: #292524;
+  --prose-muted: #404040;
+  --prose-soft: #525252;
 }
 
 html {
@@ -99,6 +105,18 @@ svg {
 
   .text-headline {
     color: var(--headline);
+  }
+
+  .text-prose {
+    color: var(--prose);
+  }
+
+  .text-prose-muted {
+    color: var(--prose-muted);
+  }
+
+  .text-prose-soft {
+    color: var(--prose-soft);
   }
 
   .border-app {

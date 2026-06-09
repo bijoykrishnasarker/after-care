@@ -32,17 +32,17 @@ export function Transformation() {
           <Reveal>
             <h2 className="text-[clamp(2rem,5vw,3.25rem)] leading-tight tracking-tight">
               <span className="font-medium text-app">This is what </span>
-              <span className="font-normal italic text-neutral-400">changes...</span>
+              <span className="font-normal italic text-prose-muted">changes...</span>
             </h2>
           </Reveal>
 
           <Reveal delay={100} className="mt-12 sm:mt-16">
             <div className="max-w-3xl">
               <div className="hidden border-b border-app pb-4 sm:grid sm:grid-cols-2 sm:gap-12">
-                <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-neutral-500 sm:text-[11px]">
+                <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-prose-soft sm:text-[11px]">
                   Before
                 </p>
-                <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-neutral-500 sm:text-[11px]">
+                <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-prose-soft sm:text-[11px]">
                   After
                 </p>
               </div>
@@ -59,7 +59,7 @@ export function Transformation() {
                           <p className="mb-1 text-[10px] font-medium uppercase tracking-[0.22em] text-neutral-600 sm:hidden">
                             Before
                           </p>
-                          <p className="break-words text-sm italic text-neutral-500 sm:text-base">
+                          <p className="break-words text-sm italic text-prose-soft sm:text-base">
                             {row.before}
                           </p>
                         </div>
@@ -90,7 +90,7 @@ export function Transformation() {
             <p className="text-base leading-relaxed text-app sm:text-lg">
               You stop needing something...
             </p>
-            <p className="mt-2 break-words text-base italic leading-relaxed text-neutral-500 sm:text-lg">
+            <p className="mt-2 break-words text-base italic leading-relaxed text-prose-soft sm:text-lg">
               that was never going to give you what you needed.
             </p>
           </Reveal>

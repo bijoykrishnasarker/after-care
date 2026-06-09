@@ -71,7 +71,9 @@ export function RoomColorAmbience({
           aria-hidden
         />
       ) : null}
-      <div className="relative z-10 flex min-h-screen flex-col">{children}</div>
+      <div className="relative z-10 flex min-h-screen w-full min-w-0 max-w-full flex-col overflow-x-hidden">
+        {children}
+      </div>
     </div>
   );
 }

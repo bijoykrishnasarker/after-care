@@ -25,7 +25,7 @@ export function MirrorReality() {
             </Reveal>
             <div>
               <Reveal delay={80}>
-                <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-neutral-500 sm:text-[11px]">
+                <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-prose-soft sm:text-[11px]">
                   You&apos;re still:
                 </p>
               </Reveal>
@@ -38,7 +38,7 @@ export function MirrorReality() {
                         className="mt-2.5 h-px w-4 shrink-0 bg-red-700 sm:w-5"
                         aria-hidden
                       />
-                      <p className="text-base italic leading-relaxed text-neutral-200 sm:text-lg">
+                      <p className="text-base italic leading-relaxed text-prose sm:text-lg">
                         {item}
                       </p>
                     </li>
@@ -47,17 +47,17 @@ export function MirrorReality() {
               </ul>
 
               <Reveal delay={520} className="mt-8 space-y-1 sm:mt-10">
-                <p className="text-sm text-neutral-500">
+                <p className="text-sm text-prose-soft">
                   You told yourself you&apos;d be okay by now.
                 </p>
-                <p className="text-sm text-neutral-500">But you&apos;re not.</p>
+                <p className="text-sm text-prose-soft">But you&apos;re not.</p>
               </Reveal>
 
               <Reveal delay={620} className="mt-10 sm:mt-12">
                 <p className="text-[clamp(1.75rem,4vw,2.5rem)] font-medium leading-tight text-app">
                   Because you never
                   <br />
-                  <span className="text-neutral-400">actually processed it.</span>
+                  <span className="text-prose-muted">actually processed it.</span>
                 </p>
               </Reveal>
             </div>

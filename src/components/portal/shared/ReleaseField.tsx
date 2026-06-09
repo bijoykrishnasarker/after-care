@@ -51,13 +51,13 @@ export function ReleaseField({
   }
 
   return (
-    <div className="border border-app/80 bg-surface/30 p-5 sm:p-6">
-      <div className="flex items-start justify-between gap-4">
+    <div className="min-w-0 w-full max-w-full overflow-hidden border border-app/80 bg-surface/30 p-4 sm:p-6">
+      <div className="flex min-w-0 items-start justify-between gap-3 sm:gap-4">
         <p className="text-[10px] uppercase tracking-[0.2em] text-neutral-500">
           Release here
         </p>
         {hint && (
-          <p className="max-w-[10rem] text-right text-[9px] leading-relaxed text-neutral-600">
+          <p className="max-w-[45%] shrink-0 break-words text-right text-[9px] leading-relaxed text-neutral-600 sm:max-w-[10rem]">
             {hint}
           </p>
         )}
@@ -68,7 +68,7 @@ export function ReleaseField({
         onChange={handleChange}
         onKeyDown={handleKeyDown}
         placeholder={placeholder}
-        className="mt-4 w-full resize-none border border-app/80 bg-app/50 px-4 py-3 text-sm text-neutral-300 placeholder:text-neutral-600 outline-none transition-colors focus:border-neutral-600"
+        className="mt-4 w-full min-w-0 resize-none border border-app/80 bg-app/50 px-4 py-3 text-sm text-neutral-300 placeholder:text-neutral-600 outline-none transition-colors focus:border-neutral-600"
       />
     </div>
   );

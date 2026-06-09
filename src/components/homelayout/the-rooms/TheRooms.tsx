@@ -16,7 +16,7 @@ export function TheRooms() {
             <h2 className="text-[clamp(2rem,5vw,3.25rem)] font-medium leading-tight text-app">
               There are 7 rooms.
             </h2>
-            <p className="mt-3 text-base italic text-neutral-400 sm:text-lg">
+            <p className="mt-3 text-base italic text-prose-muted sm:text-lg">
               Each one changes something.
             </p>
           </Reveal>
@@ -28,8 +28,10 @@ export function TheRooms() {
                   <span className="text-[10px] tracking-widest text-neutral-600 sm:text-[11px]">
                     {room.number}
                   </span>
-                  <p className="text-lg italic text-app sm:text-xl">{room.name}</p>
-                  <p className="text-sm leading-relaxed text-neutral-500 sm:text-base">
+                  <p className="text-sm italic text-app sm:text-base">
+                    {room.name} Room
+                  </p>
+                  <p className="text-sm leading-relaxed text-prose-soft sm:text-base">
                     {room.line1} {room.line2}
                   </p>
                 </li>
@@ -39,10 +41,10 @@ export function TheRooms() {
 
           <Reveal delay={680} className="mt-14 flex justify-center sm:mt-16 lg:justify-start">
             <Link
-              href="#final-close"
+              href="/checkout"
               className="group inline-flex flex-col items-center gap-2 lg:items-start"
             >
-              <span className="flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.18em] text-app transition-colors duration-300 group-hover:text-neutral-200 sm:text-xs">
+              <span className="flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.18em] text-app transition-colors duration-300 group-hover:text-prose sm:text-xs">
                 Unlock the rooms
                 <span
                   className="inline-block transition-transform duration-300 group-hover:translate-x-1"
@@ -51,7 +53,7 @@ export function TheRooms() {
                   →
                 </span>
               </span>
-              <span className="h-px w-full bg-white transition-all duration-300 group-hover:w-[105%] group-hover:bg-neutral-300" />
+              <span className="h-px w-full bg-app transition-all duration-300 group-hover:w-[105%] group-hover:bg-[var(--prose-muted)]" />
             </Link>
           </Reveal>
         </div>

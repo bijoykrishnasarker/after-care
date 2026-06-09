@@ -23,7 +23,7 @@ export function IdentityShift() {
                   <span className="block font-medium text-app">
                     You don&apos;t actually
                   </span>
-                  <span className="mt-1 block font-normal italic text-neutral-400">
+                  <span className="mt-1 block font-normal italic text-prose-muted">
                     want them back.
                   </span>
                 </h2>
@@ -38,14 +38,14 @@ export function IdentityShift() {
               <div className="mt-8 space-y-2 sm:mt-10">
                 {feelings.map((item, index) => (
                   <Reveal key={item} delay={240 + index * 70}>
-                    <p className="text-sm text-neutral-500 sm:text-base">{item}</p>
+                    <p className="text-sm text-prose-soft sm:text-base">{item}</p>
                   </Reveal>
                 ))}
               </div>
             </div>
             <Reveal delay={400}>
               <div className="border border-app bg-surface p-8 sm:p-10 lg:p-12">
-                <p className="text-base italic text-neutral-500 sm:text-lg">
+                <p className="text-base italic text-prose-soft sm:text-lg">
                   AfterCare doesn&apos;t give you them back.
                 </p>
                 <p className="mt-6 text-2xl font-medium leading-snug text-app sm:text-3xl">

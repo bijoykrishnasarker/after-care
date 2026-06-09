@@ -25,6 +25,21 @@ type RoomExperienceLayoutProps = {
   releasePlaceholder?: string;
 };
 
+const portalHeaderClass =
+  "border-b border-app/80 bg-transparent px-4 py-4 sm:px-6 sm:py-5 lg:px-14";
+const portalHeaderInnerClass =
+  "mx-auto flex w-full min-w-0 max-w-7xl items-center justify-between gap-2 sm:gap-4";
+const portalNavLinkClass =
+  "shrink-0 text-[9px] uppercase tracking-[0.16em] text-neutral-500 transition-colors hover:text-app sm:text-[10px] sm:tracking-[0.2em]";
+const portalMainClass =
+  "mx-auto grid w-full min-w-0 max-w-7xl flex-1 grid-cols-1 gap-8 px-4 py-8 sm:gap-10 sm:px-6 sm:py-10 lg:grid-cols-2 lg:gap-14 lg:px-14 lg:py-14";
+const portalCopyClass =
+  "max-w-full break-words text-sm leading-[1.85] text-neutral-400 sm:text-[15px]";
+const portalQuoteClass =
+  "max-w-full break-words font-serif-display text-base italic leading-relaxed text-neutral-300 sm:text-lg lg:text-xl";
+const portalTitleClass =
+  "mt-4 break-words font-serif-display text-3xl leading-tight text-headline sm:text-4xl lg:text-5xl xl:text-[3.25rem]";
+
 export function RoomExperienceLayout({
   slug,
   title,
@@ -50,30 +65,24 @@ export function RoomExperienceLayout({
 
   return (
     <RoomColorAmbience color={roomColor} className="text-app">
-      <header className="border-b border-app/80 bg-transparent px-6 py-5 sm:px-10 lg:px-14">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-6">
-          <Link
-            href={topLeftHref}
-            className="text-[10px] uppercase tracking-[0.2em] text-neutral-500 transition-colors hover:text-app"
-          >
+      <header className={portalHeaderClass}>
+        <div className={portalHeaderInnerClass}>
+          <Link href={topLeftHref} className={portalNavLinkClass}>
             <span aria-hidden>← </span>
             {topLeftLabel}
           </Link>
 
           <RoomProgressDots activeIndex={nav.index} />
 
-          <div className="flex items-center gap-4">
+          <div className="flex shrink-0 items-center gap-2 sm:gap-4">
             <ThemeToggle />
             {next ? (
-              <Link
-                href={getRoomPath(next.slug)}
-                className="text-[10px] uppercase tracking-[0.2em] text-neutral-500 transition-colors hover:text-app"
-              >
+              <Link href={getRoomPath(next.slug)} className={portalNavLinkClass}>
                 Room {nextRoomNumber}
                 <span aria-hidden> →</span>
               </Link>
             ) : (
-              <span className="text-[10px] uppercase tracking-[0.2em] text-neutral-700">
+              <span className="text-[9px] uppercase tracking-[0.16em] text-neutral-700 sm:text-[10px] sm:tracking-[0.2em]">
                 Final
               </span>
             )}
@@ -81,63 +90,51 @@ export function RoomExperienceLayout({
         </div>
       </header>
 
-      <main className="mx-auto grid w-full max-w-7xl flex-1 gap-10 px-6 py-10 sm:px-10 lg:grid-cols-2 lg:gap-14 lg:px-14 lg:py-14">
-        <section className="flex flex-col justify-between">
-          <div>
+      <main className={portalMainClass}>
+        <section className="flex min-w-0 flex-col justify-between">
+          <div className="min-w-0">
             <p
               className="text-[10px] uppercase tracking-[0.22em]"
               style={{ color: roomColor }}
             >
               Room {current.number}
             </p>
-            <h1 className="mt-4 font-serif-display text-4xl leading-tight text-headline sm:text-5xl lg:text-[3.25rem]">
-              {title}
-            </h1>
+            <h1 className={portalTitleClass}>{title}</h1>
 
             {showTitleDivider && (
               <span className="mt-6 block h-px w-12 bg-neutral-700" aria-hidden />
             )}
 
-            <p className="mt-8 max-w-lg text-sm leading-[1.85] text-neutral-400 sm:text-[15px]">
-              {bodyCopy}
-            </p>
+            <p className={`mt-8 ${portalCopyClass}`}>{bodyCopy}</p>
 
             {quoteVariant === "accent-border" ? (
               <blockquote
-                className="mt-10 border-t pt-8"
+                className="mt-10 max-w-full border-t pt-8"
                 style={{ borderColor: `${roomColor}66` }}
               >
-                <p className="font-serif-display text-lg italic leading-relaxed text-neutral-300 sm:text-xl">
-                  &ldquo;{quote}&rdquo;
-                </p>
+                <p className={portalQuoteClass}>&ldquo;{quote}&rdquo;</p>
               </blockquote>
             ) : quoteVariant === "left-border" ? (
-              <blockquote className="mt-10 border-l border-neutral-700 pl-5">
-                <p className="font-serif-display text-lg italic leading-relaxed text-neutral-300 sm:text-xl">
-                  &ldquo;{quote}&rdquo;
-                </p>
+              <blockquote className="mt-10 max-w-full border-l border-neutral-700 pl-5">
+                <p className={portalQuoteClass}>&ldquo;{quote}&rdquo;</p>
               </blockquote>
             ) : quoteVariant === "plain" ? (
-              <blockquote className="mt-10">
-                <p className="font-serif-display text-lg italic leading-relaxed text-neutral-300 sm:text-xl">
-                  &ldquo;{quote}&rdquo;
-                </p>
+              <blockquote className="mt-10 max-w-full">
+                <p className={portalQuoteClass}>&ldquo;{quote}&rdquo;</p>
               </blockquote>
             ) : (
-              <blockquote className="mt-10 border border-app/80 bg-surface/20 px-5 py-6">
-                <p className="font-serif-display text-lg italic leading-relaxed text-neutral-300 sm:text-xl">
-                  &ldquo;{quote}&rdquo;
-                </p>
+              <blockquote className="mt-10 max-w-full border border-app/80 bg-surface/20 px-5 py-6">
+                <p className={portalQuoteClass}>&ldquo;{quote}&rdquo;</p>
               </blockquote>
             )}
           </div>
 
-          <p className="mt-12 text-[10px] uppercase tracking-[0.22em] text-neutral-600 lg:mt-0">
+          <p className="mt-12 max-w-full break-words text-[10px] uppercase tracking-[0.22em] text-neutral-600 lg:mt-0">
             {footerLine}
           </p>
         </section>
 
-        <section className="flex flex-col gap-4">
+        <section className="flex min-w-0 w-full flex-col gap-4">
           <SonicHealingPlayer tracks={tracks} />
           <MoodSelector />
           <ReleaseField
@@ -149,25 +146,19 @@ export function RoomExperienceLayout({
         </section>
       </main>
 
-      <footer className="border-t border-app/80 bg-transparent px-6 py-5 sm:px-10 lg:px-14">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-6">
-          <Link
-            href="/portal/architecture"
-            className="text-[10px] uppercase tracking-[0.2em] text-neutral-500 transition-colors hover:text-app"
-          >
+      <footer className={portalHeaderClass}>
+        <div className={portalHeaderInnerClass}>
+          <Link href="/portal/architecture" className={portalNavLinkClass}>
             <span aria-hidden>← </span>
             All rooms
           </Link>
 
           {next ? (
-            <Link
-              href={getRoomPath(next.slug)}
-              className="text-[10px] uppercase tracking-[0.2em] text-neutral-500 transition-colors hover:text-app"
-            >
+            <Link href={getRoomPath(next.slug)} className={portalNavLinkClass}>
               Continue to next room<span aria-hidden> →</span>
             </Link>
           ) : (
-            <span className="text-[10px] uppercase tracking-[0.2em] text-neutral-700">
+            <span className="text-[9px] uppercase tracking-[0.16em] text-neutral-700 sm:text-[10px] sm:tracking-[0.2em]">
               Journey complete
             </span>
           )}

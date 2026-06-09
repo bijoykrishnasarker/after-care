@@ -39,7 +39,7 @@ export function ObjectionBreaker() {
                     {item.question}
                   </h3>
                   <div className="mt-5 border-l-2 border-red-800 pl-5 sm:mt-6 sm:pl-6">
-                    <p className="text-sm leading-relaxed text-neutral-500 sm:text-base">
+                    <p className="text-sm leading-relaxed text-prose-soft sm:text-base">
                       {item.answer}
                     </p>
                   </div>

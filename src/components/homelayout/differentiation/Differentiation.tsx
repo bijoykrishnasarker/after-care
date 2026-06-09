@@ -23,7 +23,7 @@ export function Differentiation() {
                 <span className="block font-medium text-app">
                   This isn&apos;t a book.
                 </span>
-                <span className="mt-2 block font-normal italic text-neutral-400">
+                <span className="mt-2 block font-normal italic text-prose-muted">
                   This isn&apos;t a course.
                 </span>
               </h2>
@@ -33,14 +33,14 @@ export function Differentiation() {
                 <h3 className="text-xl font-medium leading-snug text-app sm:text-2xl">
                   You don&apos;t just read this.
                   <br />
-                  <span className="font-normal italic text-neutral-400">
+                  <span className="font-normal italic text-prose-muted">
                     You enter it.
                   </span>
                 </h3>
               </Reveal>
 
               <Reveal delay={200} className="mt-8 sm:mt-10">
-                <p className="text-sm text-neutral-500 sm:text-[15px]">
+                <p className="text-sm text-prose-soft sm:text-[15px]">
                   Inside, you&apos;ll move through 7 structured emotional
                   environments designed to:
                 </p>
@@ -54,7 +54,7 @@ export function Differentiation() {
                         className="mt-2 h-2 w-2 shrink-0 bg-red-700"
                         aria-hidden
                       />
-                      <p className="text-base text-neutral-400 sm:text-lg">
+                      <p className="text-base text-prose-muted sm:text-lg">
                         {item}
                       </p>
                     </li>
@@ -63,7 +63,7 @@ export function Differentiation() {
               </ul>
 
               <Reveal delay={680} className="mt-10 sm:mt-12">
-                <p className="max-w-md text-base italic leading-relaxed text-neutral-500 sm:text-lg">
+                <p className="max-w-md text-base italic leading-relaxed text-prose-soft sm:text-lg">
                   It feels like someone is sitting with you... walking you
                   through it... making sure you don&apos;t avoid the parts that
                   matter.

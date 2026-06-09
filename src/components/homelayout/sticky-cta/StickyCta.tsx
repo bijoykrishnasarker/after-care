@@ -55,7 +55,7 @@ export function StickyCta() {
             <p className="font-serif-display text-base italic leading-snug text-app sm:text-lg">
               Ready to process what you&apos;re carrying?
             </p>
-            <p className="mt-1 text-[10px] uppercase tracking-[0.18em] text-neutral-500 sm:text-[11px]">
+            <p className="mt-1 text-[10px] uppercase tracking-[0.18em] text-prose-soft sm:text-[11px]">
               Immediate access · $48.88
             </p>
           </div>

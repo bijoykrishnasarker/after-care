@@ -14,37 +14,37 @@ export function FinalClose() {
           <Reveal>
             <h2 className="text-[clamp(2rem,5vw,3.25rem)] leading-tight tracking-tight">
               <span className="font-medium text-app">You have </span>
-              <span className="font-normal italic text-neutral-400">two options.</span>
+              <span className="font-normal italic text-prose-muted">two options.</span>
             </h2>
           </Reveal>
 
           <Reveal delay={100} className="mt-12 grid gap-10 border-y border-app py-10 sm:mt-14 sm:grid-cols-2 sm:gap-12 sm:py-12">
             <div>
-              <p className="text-sm leading-relaxed text-neutral-500 sm:text-base">
+              <p className="text-sm leading-relaxed text-prose-soft sm:text-base">
                 Keep doing what you&apos;ve been doing...
               </p>
-              <p className="mt-2 text-sm italic text-neutral-500 sm:text-base">
+              <p className="mt-2 text-sm italic text-prose-soft sm:text-base">
                 and stay stuck in it.
               </p>
             </div>
             <div className="sm:border-l sm:border-app sm:pl-12">
-              <p className="text-sm leading-relaxed text-neutral-500 sm:text-base">
+              <p className="text-sm leading-relaxed text-prose-soft sm:text-base">
                 Or... Finally face it. Process it.
               </p>
-              <p className="mt-2 text-sm italic text-neutral-400 sm:text-base">
+              <p className="mt-2 text-sm italic text-prose-muted sm:text-base">
                 And come out of it different.
               </p>
             </div>
           </Reveal>
 
           <Reveal delay={220} className="mt-10 text-center sm:mt-12 lg:text-left">
-            <p className="text-sm italic text-neutral-500 sm:text-base">
+            <p className="text-sm italic text-prose-soft sm:text-base">
               Because it already ended.
             </p>
           </Reveal>
 
           <Reveal delay={320} className="mt-10 sm:mt-12">
-            <p className="text-sm text-neutral-500 sm:text-base">
+            <p className="text-sm text-prose-soft sm:text-base">
               The only question is...
             </p>
             <p className="mt-2 text-[clamp(1.75rem,4vw,2.5rem)] font-medium text-app">

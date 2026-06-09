@@ -22,7 +22,7 @@ export function BreakStrategy() {
               <span className="block font-medium text-app">
                 What you&apos;ve been doing
               </span>
-              <span className="mt-1 block font-normal italic text-neutral-400">
+              <span className="mt-1 block font-normal italic text-prose-muted">
                 isn&apos;t healing you.
               </span>
             </h2>
@@ -33,7 +33,7 @@ export function BreakStrategy() {
             
             <div>
               <Reveal delay={100}>
-                <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-neutral-500 sm:text-[11px]">
+                <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-prose-soft sm:text-[11px]">
                   You&apos;ve tried:
                 </p>
               </Reveal>
@@ -46,7 +46,7 @@ export function BreakStrategy() {
                         className="mt-2.5 h-px w-4 shrink-0 bg-neutral-600 sm:w-5"
                         aria-hidden
                       />
-                      <p className="text-base italic leading-relaxed text-neutral-400 sm:text-lg">
+                      <p className="text-base italic leading-relaxed text-prose-muted sm:text-lg">
                         {item}
                       </p>
                     </li>
@@ -57,7 +57,7 @@ export function BreakStrategy() {
             <div className="flex flex-col justify-between gap-12 lg:gap-16">
               <Reveal delay={520}>
                 <div className="border-l-2 border-red-700 pl-5 sm:pl-6">
-                  <p className="text-sm italic text-neutral-500 sm:text-base">
+                  <p className="text-sm italic text-prose-soft sm:text-base">
                     But when it gets quiet...
                   </p>
                   <p className="mt-2 text-sm text-app sm:text-base">
@@ -71,7 +71,7 @@ export function BreakStrategy() {
                   <p className="text-lg font-medium leading-snug text-app sm:text-xl">
                     You don&apos;t move on from something like this by avoiding it.
                   </p>
-                  <p className="mt-3 text-lg italic text-neutral-400 sm:text-xl">
+                  <p className="mt-3 text-lg italic text-prose-muted sm:text-xl">
                     You move through it.
                   </p>
                 </div>

@@ -35,21 +35,21 @@ export function ValueStack() {
               <Reveal>
                 <h2 className="text-[clamp(2rem,5vw,3.25rem)] leading-tight tracking-tight">
                   <span className="font-medium text-app">Let&apos;s be real </span>
-                  <span className="font-normal italic text-neutral-400">
+                  <span className="font-normal italic text-prose-muted">
                     for a second...
                   </span>
                 </h2>
               </Reveal>
 
               <Reveal delay={100} className="mt-10 sm:mt-12">
-                <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-neutral-500 sm:text-[11px]">
+                <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-prose-soft sm:text-[11px]">
                   You could:
                 </p>
                 <ul className="mt-5 space-y-4">
                   {couldItems.map((item, index) => (
                     <li
                       key={item}
-                      className="flex items-start gap-4 text-sm text-neutral-500 sm:text-base"
+                      className="flex items-start gap-4 text-sm text-prose-soft sm:text-base"
                     >
                       <span
                         className="mt-2.5 h-px w-4 shrink-0 bg-neutral-600"
@@ -62,7 +62,7 @@ export function ValueStack() {
               </Reveal>
 
               <Reveal delay={220} className="mt-10 sm:mt-12">
-                <p className="text-sm text-neutral-400 sm:text-base">
+                <p className="text-sm text-prose-muted sm:text-base">
                   Or... Walk through it properly.
                 </p>
                 <ul className="mt-5 space-y-4">
@@ -81,7 +81,7 @@ export function ValueStack() {
               <p className="text-lg font-medium text-app sm:text-xl">
                 AfterCare: When It&apos;s Over
               </p>
-              <p className="mt-2 text-[10px] font-medium uppercase tracking-[0.22em] text-neutral-500 sm:text-[11px]">
+              <p className="mt-2 text-[10px] font-medium uppercase tracking-[0.22em] text-prose-soft sm:text-[11px]">
                 Full 7-room experience
               </p>
 
@@ -104,7 +104,7 @@ export function ValueStack() {
 
               <ul className="mt-8 space-y-4 border-t border-app pt-8">
                 {features.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-sm text-neutral-300">
+                  <li key={item} className="flex items-start gap-3 text-sm text-prose">
                     <span className="mt-0.5 text-red-600" aria-hidden>
                       ✓
                     </span>
@@ -122,14 +122,14 @@ export function ValueStack() {
                 <span aria-hidden>→</span>
               </Link>
 
-              <p className="mt-6 text-center text-sm italic text-neutral-500">
+              <p className="mt-6 text-center text-sm italic text-prose-soft">
                 Something you can return to whenever you need.
               </p>
 
               <Link
                 href="/checkout"
                 prefetch
-                className="mt-6 flex items-center justify-center gap-2 text-[10px] uppercase tracking-[0.18em] text-neutral-600 transition-colors duration-300 hover:text-neutral-400"
+                className="mt-6 flex items-center justify-center gap-2 text-[10px] uppercase tracking-[0.18em] text-neutral-600 transition-colors duration-300 hover:text-prose-muted"
               >
                 <span aria-hidden>🔒</span>
                 Secure checkout

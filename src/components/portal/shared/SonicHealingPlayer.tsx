@@ -122,7 +122,7 @@ export function SonicHealingPlayer({ tracks }: SonicHealingPlayerProps) {
   const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
 
   return (
-    <div className="border border-app/80 bg-surface/30 p-5 sm:p-6">
+    <div className="min-w-0 w-full max-w-full overflow-hidden border border-app/80 bg-surface/30 p-4 sm:p-6">
       <div className="flex items-center justify-between gap-4">
         <p className="text-[10px] uppercase tracking-[0.2em] text-neutral-500">
           Sonic healing
@@ -242,9 +242,9 @@ export function SonicHealingPlayer({ tracks }: SonicHealingPlayerProps) {
           </div>
 
           {loadError && (
-            <p className="mt-4 text-xs text-neutral-500">
+            <p className="mt-4 break-words text-xs text-neutral-500">
               Add audio to{" "}
-              <code className="text-neutral-400">{currentTrack.src}</code>
+              <code className="break-all text-neutral-400">{currentTrack.src}</code>
             </p>
           )}
 
